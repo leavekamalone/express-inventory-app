@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  div(class='card' style='width: 18rem;')
+    h1 #{title}
+
+    p #[strong ] #{category.description}
+    hr
+    p
+        a(href=category.url+'/delete') Delete Category
+    p
+        a(href=category.url+'/update') Update Category

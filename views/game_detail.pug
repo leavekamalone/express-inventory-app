@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div(class='card' style='width: 18rem;')
+    h1 #{title}
+
+    p #[strong Category: ]
+        a(href=game.category[0].url) #{game.category[0].name}
+    p #[strong Description] #{game.description}
+    p #[strong Price:] #{game.price}
+    p #[strong Number in Stock:] #{game.number_in_stock}
+    hr
+    p
+        a(href=game.url+'/delete') Delete Game
+    p
+        a(href=game.url+'/update') Update Game

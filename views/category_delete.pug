@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 #{title}: #{category.name}
+
+
+  if game.length
+
+    p #[strong Delete the following games before attempting to delete this category.]
+
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Games
+
+      dl
+      each gam in game
+        dt
+          a(href=gam.url) #{gam.title}
+        dd #{gam.description}
+
+  else
+    p Do you really want to delete this Category?
+
+    form(method='POST' action='')
+      div.form-group
+        input#categoryid.form-control(type='hidden',name='categoryid', required='true', value=category._id )
+
+      button.btn.btn-primary(type='submit') Delete

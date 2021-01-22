@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    - game_list.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+    each game in game_list
+      li
+        a(href=game.url) #{game.title}
+        |  (#{game.price})
+
+    else
+      li There are no games.

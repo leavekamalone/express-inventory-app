@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+
+    div.form-group
+      label(for='title') Title:
+      input#title.form-control(type='text' placeholder='Game Title' name='title' required='true' value=(undefined===game ? '' : game.title))
+    div.form-group
+      label(for='description') Description:
+      input#description.form-control(type='text' placeholder='Description of Game' name='description' required='true' value=(undefined===game ? '' : game.description))
+    div.form-group
+      label(for='price') Price:
+      input#price.form-control(type='text' placeholder='Game Price' name='price' required='true' value=(undefined===game ? '' : game.price))
+    div.form-group
+      label(for='number_in_stock') Stock:
+      input#number_in_stock.form-control(type='text' placeholder='Stock' name='number_in_stock' required='true' value=(undefined===game ? '' : game.number_in_stock))
+
+    div.form-group
+      label(for='category') Category:
+      select#category.form-control(type='select' placeholder='Select Category' name='category' required='true')
+        for category in category_list
+          if game
+            //- Handle GET form, where book.author is an object, and POST form, where it is a string.
+            option(
+              value=category._id
+              selected=(
+                category._id.toString()==game.category._id
+                || category._id.toString()==game.category
+              ) ? 'selected' : false
+            ) #{category.name}
+          else
+            option(value=category._id) #{category.name}
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
